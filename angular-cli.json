@@ -1,7 +1,7 @@
 {
   "project": {
     "version": "1.0.0-beta.16",
-    "name": "angular2-contacts-v2"
+    "name": "angular2-contacts"
   },
   "apps": [
     {
