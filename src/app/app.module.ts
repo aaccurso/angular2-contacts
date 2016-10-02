@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { routing, appRoutingProviders } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { ContactService } from './contact/contact.service';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 
@@ -20,7 +21,10 @@ import { ContactDetailComponent } from './contact-detail/contact-detail.componen
     FormsModule,
     HttpModule
   ],
-  providers: [appRoutingProviders],
+  providers: [
+    appRoutingProviders,
+    ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

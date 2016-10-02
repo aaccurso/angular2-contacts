@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Contact } from '../contact/contact';
+import { ContactService } from '../contact/contact.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -9,22 +10,24 @@ import { Contact } from '../contact/contact';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
-  contacts: Contact[] = [
-    {
-      id: 1,
-      name: 'Alan Accurso',
-      email: 'a@a.com',
-      phoneNumber: '1234-5678',
-      cellPhoneNumber: '11-2345-1234'
-    }
-  ];
 
-  constructor(private router: Router) {}
+  contacts: Contact[];
+
+  constructor(
+    private router: Router,
+    private contactService: ContactService
+  ) {}
 
   onSelect(contact: Contact) {
     this.router.navigate(['/contact', contact.id]);
   }
 
-  ngOnInit() {}
+  getContacts() {
+    this.contactService.findAll().subscribe(contacts => this.contacts = contacts);
+  }
+
+  ngOnInit() {
+    this.getContacts();
+  }
 
 }
