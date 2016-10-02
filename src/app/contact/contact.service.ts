@@ -24,13 +24,18 @@ export class ContactService {
     });
   }
 
-  upsert(contact: Contact): Observable<Contact> {
-    contact.id = this.contacts.length + 1;
+  upsert(upsertContact: Contact): Observable<Contact> {
     return Observable.create(observer => {
-      let contacts = this.contacts.slice(0);
-      contacts.push(contact);
+      let contacts: Contact[];
+      if (upsertContact.id) { // Update contact
+        contacts = this.contacts.filter(contact => contact.id !== upsertContact.id);
+      } else { // Insert contact
+        upsertContact.id = this.contacts.length + 1;
+        contacts = this.contacts.slice(0);
+      }
+      contacts.push(upsertContact);
       this.contacts = contacts;
-      observer.next(contact);
+      observer.next(upsertContact);
       observer.complete();
     });
   }

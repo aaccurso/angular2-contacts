@@ -27,7 +27,7 @@ export class ContactListComponent implements OnInit {
   }
 
   createContact() {
-    this.router.navigate(['/create/contact']);
+    this.router.navigate(['/form/contact']);
   }
 
   ngOnInit() {

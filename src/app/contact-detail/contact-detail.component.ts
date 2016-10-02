@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Contact } from '../contact/contact';
 import { ContactService } from '../contact/contact.service';
@@ -22,6 +22,10 @@ export class ContactDetailComponent implements OnInit {
   getContact() {
     let id = +this.route.snapshot.params['id']; // (+) converts string 'id' to a number
     this.contactService.findOne(id).subscribe(contact => this.contact = contact);
+  }
+
+  editContact() {
+    this.router.navigate(['/form/contact/', this.contact.id]);
   }
 
   ngOnInit() {

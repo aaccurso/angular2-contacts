@@ -8,7 +8,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 const appRoutes: Routes = [
   { path: '', component: ContactListComponent },
   { path: 'contact/:id', component: ContactDetailComponent },
-  { path: 'create/contact', component: ContactFormComponent },
+  { path: 'form/contact', component: ContactFormComponent },
+  { path: 'form/contact/:id', component: ContactFormComponent },
 ];
 export const appRoutingProviders: any[] = [
 ];

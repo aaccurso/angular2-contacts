@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Contact } from '../contact/contact';
 import { ContactService } from '../contact/contact.service';
@@ -14,6 +14,7 @@ export class ContactFormComponent implements OnInit {
   contact: Contact;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private contactService: ContactService
   ) {}
@@ -28,7 +29,13 @@ export class ContactFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contact = this.newContact();
+    let contactId = +this.route.snapshot.params['id'];
+    if (contactId) {
+      this.contactService.findOne(contactId)
+        .subscribe(contact => this.contact = contact);
+    } else {
+      this.contact = this.newContact();
+    }
   }
 
 }
