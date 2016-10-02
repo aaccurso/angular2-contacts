@@ -1,19 +1,24 @@
-<form>
+<form #contactForm="ngForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Name</label>
-    <input type="text" id="name" required>
+    <input type="text" id="name" required
+      [(ngModel)]="contact.name" name="name">
   </div>
   <div>
     <label for="email">Email</label>
-    <input type="email" id="email" required>
+    <input type="email" id="email" required
+      [(ngModel)]="contact.email" name="email">
   </div>
   <div>
     <label for="phoneNumber">Phone Number</label>
-    <input type="text" id="phoneNumber" required>
+    <input type="text" id="phoneNumber" required
+      [(ngModel)]="contact.phoneNumber" name="phoneNumber">
   </div>
   <div>
     <label for="cellPhoneNumber">Cell Phone Number</label>
-    <input type="text" id="cellPhoneNumber">
+    <input type="text" id="cellPhoneNumber"
+      [(ngModel)]="contact.cellPhoneNumber" name="cellPhoneNumber">
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit" [disabled]="!contactForm.valid">Submit</button>
+  {{diagnostic}}
 </form>

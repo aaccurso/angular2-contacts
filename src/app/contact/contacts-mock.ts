@@ -1,6 +1,6 @@
 import { Contact } from './contact';
 
-export const contactsMock: Contact[] = [
+export let contactsMock: Contact[] = [
     {
         id: 1,
         name: 'Alan Accurso',
