@@ -26,6 +26,10 @@ export class ContactListComponent implements OnInit {
     this.contactService.findAll().subscribe(contacts => this.contacts = contacts);
   }
 
+  createContact() {
+    this.router.navigate(['/create/contact']);
+  }
+
   ngOnInit() {
     this.getContacts();
   }

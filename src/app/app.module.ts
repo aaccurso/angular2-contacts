@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { ContactService } from './contact/contact.service';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactListComponent,
-    ContactDetailComponent
+    ContactDetailComponent,
+    ContactFormComponent
   ],
   imports: [
     routing,
