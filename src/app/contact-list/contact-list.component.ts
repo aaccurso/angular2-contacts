@@ -30,6 +30,12 @@ export class ContactListComponent implements OnInit {
     this.router.navigate(['/form/contact']);
   }
 
+  deleteContact(contactId: number) {
+    this.contactService.delete(contactId).subscribe(() => {
+      this.contacts = this.contacts.filter(contact => contact.id !== contactId);
+    });
+  }
+
   ngOnInit() {
     this.getContacts();
   }

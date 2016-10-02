@@ -1,7 +1,7 @@
 <ul>
-  <li *ngFor="let contact of contacts"
-    (click)="onSelect(contact)">
-    {{contact.name}}
+  <li *ngFor="let contact of contacts">
+    <span (click)="onSelect(contact)">{{contact.name}}</span>
+    <button type="button" (click)="deleteContact(contact.id)">Delete</button>
   </li>
 </ul>
 <button type="button" (click)="createContact()">Create Contact</button>

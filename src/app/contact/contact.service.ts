@@ -40,4 +40,12 @@ export class ContactService {
     });
   }
 
+  delete(id: number): Observable<void> {
+    return Observable.create(observer => {
+      this.contacts = this.contacts.filter(contact => contact.id !== id);
+      observer.next();
+      observer.complete();
+    });
+  }
+
 }
