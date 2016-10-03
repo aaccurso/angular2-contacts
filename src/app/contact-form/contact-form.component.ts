@@ -21,7 +21,7 @@ export class ContactFormComponent implements OnInit {
 
   onSubmit() {
     this.contactService.upsert(this.contact)
-      .subscribe(() => this.router.navigate(['']));
+      .subscribe(() => this.router.navigate(['contacts']));
   }
 
   ngOnInit() {

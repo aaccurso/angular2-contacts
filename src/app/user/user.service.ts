@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'; // TODO: look further into this import
+import 'rxjs/add/operator/map';
 
 import { API_URL } from '../shared/index';
 import { User } from './user';

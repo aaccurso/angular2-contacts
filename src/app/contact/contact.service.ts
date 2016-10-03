@@ -36,6 +36,7 @@ export class ContactService {
   upsert(upsertContact: Contact): Observable<Contact> {
     let contactId = upsertContact._id;
     delete upsertContact._id;
+    delete upsertContact.user;
     if (contactId) { // Update contact
       return this.http.put(`${CONTACT_URL}/${contactId}`, upsertContact, this.userService.options)
         .map(this.extractData);

@@ -20,7 +20,10 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit() {
     this.userService.login(this.user.username, this.user.password)
-      .subscribe(() => this.router.navigate(['contacts']));
+      .subscribe(
+        () => this.router.navigate(['contacts']),
+        () => alert('Username or password invalid')
+      );
   }
 
   ngOnInit() {

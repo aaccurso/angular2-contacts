@@ -26,10 +26,6 @@ export class ContactListComponent implements OnInit {
     this.contactService.findAll().subscribe(contacts => this.contacts = contacts);
   }
 
-  createContact() {
-    this.router.navigate(['/form/contact']);
-  }
-
   deleteContact(contactToDelete: Contact) {
     this.contactService.delete(contactToDelete._id).subscribe(() => {
       this.contacts = this.contacts.filter(contact => contact._id !== contactToDelete._id);

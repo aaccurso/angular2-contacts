@@ -1,12 +1,12 @@
 <form class="pure-form pure-form-aligned" #loginForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="pure-control-group">
     <label for="username">Username</label>
-    <input type="text" id="username" required
+    <input type="text" id="username" placeholder="mrrobot" required
       [(ngModel)]="user.username" name="username">
   </div>
   <div class="pure-control-group">
     <label for="password">Password</label>
-    <input type="password" id="password" required
+    <input type="password" id="password" placeholder="secret" required
       [(ngModel)]="user.password" name="password">
   </div>
   <div class="pure-controls">
