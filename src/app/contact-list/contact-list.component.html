@@ -1,7 +1,20 @@
-<ul>
-  <li *ngFor="let contact of contacts">
-    <span (click)="onSelect(contact)">{{contact.name}}</span>
-    <button type="button" (click)="deleteContact(contact)">Delete</button>
-  </li>
-</ul>
-<button type="button" (click)="createContact()">Create Contact</button>
+<table class="pure-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of contacts">
+      <td>{{contact.name}}</td>
+      <td>{{contact.email}}</td>
+      <td>
+        <button type="button" class="pure-button pure-button-primary" (click)="viewContact(contact)">View</button>
+        <button type="button" class="pure-button" (click)="deleteContact(contact)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="pure-button pure-button-primary" (click)="createContact()">Create Contact</button>

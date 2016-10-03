@@ -1,13 +1,13 @@
 <p>
-  {{contact.name}}
+  <span>Name: </span>{{contact.name}}
 </p>
 <p>
-  {{contact.email}}
+  <span>Email: </span>{{contact.email}}
 </p>
 <p>
-  {{contact.phoneNumber}}
+  <span>Phone Number: </span>{{contact.phoneNumber}}
 </p>
-<p>
-  {{contact.cellPhoneNumber}}
+<p *ngIf="contact.cellPhoneNumber">
+  <span>Cell Phone Number: </span>{{contact.cellPhoneNumber}}
 </p>
-<button type="button" (click)="editContact()">Edit Contact</button>
+<button type="button" class="pure-button" (click)="editContact()">Edit Contact</button>
