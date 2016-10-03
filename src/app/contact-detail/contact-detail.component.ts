@@ -20,12 +20,12 @@ export class ContactDetailComponent implements OnInit {
   ) {}
 
   getContact() {
-    let id = +this.route.snapshot.params['id']; // (+) converts string 'id' to a number
+    let id = this.route.snapshot.params['id'];
     this.contactService.findOne(id).subscribe(contact => this.contact = contact);
   }
 
   editContact() {
-    this.router.navigate(['/form/contact/', this.contact.id]);
+    this.router.navigate(['/form/contact/', this.contact._id]);
   }
 
   ngOnInit() {

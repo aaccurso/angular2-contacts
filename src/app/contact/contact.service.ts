@@ -1,51 +1,52 @@
 import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'; // TODO: look further into this import
 
 import { Contact } from './contact';
-import { contactsMock } from './contacts-mock';
+
+const API_URL = 'http://localhost:8000/contact';
 
 @Injectable()
 export class ContactService {
 
-  contacts: Contact[] = contactsMock;
+  options: RequestOptions;
 
-  findAll(): Observable<Contact[]> {
-    return Observable.create(observer => {
-      observer.next(this.contacts);
-      observer.complete();
-    });
+  constructor(private http: Http) {
+    let username = 'aaccurso';
+    let password = 'secret';
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
+    this.options = new RequestOptions({ headers: headers });
   }
 
-  findOne(id: number): Observable<Contact> {
-    let filteredContacts = this.contacts.filter(contact => contact.id === id);
-    return Observable.create(observer => {
-      observer.next(filteredContacts[0]);
-      observer.complete();
-    });
+  private extractData(response: Response) {
+    return response.json();
+  }
+
+  findAll(): Observable<Contact[]> {
+    return this.http.get(API_URL, this.options)
+      .map(this.extractData);
+  }
+
+  findOne(id: string): Observable<Contact> {
+    return this.http.get(`${API_URL}/${id}`, this.options)
+      .map(this.extractData);
   }
 
   upsert(upsertContact: Contact): Observable<Contact> {
-    return Observable.create(observer => {
-      let contacts: Contact[];
-      if (upsertContact.id) { // Update contact
-        contacts = this.contacts.filter(contact => contact.id !== upsertContact.id);
-      } else { // Insert contact
-        upsertContact.id = this.contacts.length + 1;
-        contacts = this.contacts.slice(0);
-      }
-      contacts.push(upsertContact);
-      this.contacts = contacts;
-      observer.next(upsertContact);
-      observer.complete();
-    });
+    if (upsertContact._id) { // Update contact
+      return this.http.put(`${API_URL}/${upsertContact._id}`, upsertContact, this.options)
+        .map(this.extractData);
+    } else { // Insert contact
+      delete upsertContact._id;
+      return this.http.post(API_URL, upsertContact, this.options)
+        .map(this.extractData);
+    }
   }
 
-  delete(id: number): Observable<void> {
-    return Observable.create(observer => {
-      this.contacts = this.contacts.filter(contact => contact.id !== id);
-      observer.next();
-      observer.complete();
-    });
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${API_URL}/${id}`, this.options);
   }
 
 }

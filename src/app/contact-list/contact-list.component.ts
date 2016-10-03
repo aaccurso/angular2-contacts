@@ -19,7 +19,7 @@ export class ContactListComponent implements OnInit {
   ) {}
 
   onSelect(contact: Contact) {
-    this.router.navigate(['/contact', contact.id]);
+    this.router.navigate(['/contact', contact._id]);
   }
 
   getContacts() {
@@ -30,9 +30,9 @@ export class ContactListComponent implements OnInit {
     this.router.navigate(['/form/contact']);
   }
 
-  deleteContact(contactId: number) {
-    this.contactService.delete(contactId).subscribe(() => {
-      this.contacts = this.contacts.filter(contact => contact.id !== contactId);
+  deleteContact(contactToDelete: Contact) {
+    this.contactService.delete(contactToDelete._id).subscribe(() => {
+      this.contacts = this.contacts.filter(contact => contact._id !== contactToDelete._id);
     });
   }
 
