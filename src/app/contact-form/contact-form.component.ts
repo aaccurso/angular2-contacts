@@ -19,10 +19,6 @@ export class ContactFormComponent implements OnInit {
     private contactService: ContactService
   ) {}
 
-  newContact(): Contact {
-    return {_id: '', email: '', name: '', phoneNumber: '', cellPhoneNumber: ''};
-  }
-
   onSubmit() {
     this.contactService.upsert(this.contact)
       .subscribe(() => this.router.navigate(['']));
@@ -30,11 +26,10 @@ export class ContactFormComponent implements OnInit {
 
   ngOnInit() {
     let contactId = this.route.snapshot.params['id'];
+    this.contact = new Contact();
     if (contactId) {
       this.contactService.findOne(contactId)
         .subscribe(contact => this.contact = contact);
-    } else {
-      this.contact = this.newContact();
     }
   }
 

@@ -11,7 +11,7 @@ import { ContactService } from '../contact/contact.service';
 })
 export class ContactDetailComponent implements OnInit {
 
-  contact: Contact;
+  contact: Contact = new Contact();
 
   constructor(
     private route: ActivatedRoute,

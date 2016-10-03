@@ -35,11 +35,12 @@ export class ContactService {
   }
 
   upsert(upsertContact: Contact): Observable<Contact> {
-    if (upsertContact._id) { // Update contact
-      return this.http.put(`${API_URL}/${upsertContact._id}`, upsertContact, this.options)
+    let contactId = upsertContact._id;
+    delete upsertContact._id;
+    if (contactId) { // Update contact
+      return this.http.put(`${API_URL}/${contactId}`, upsertContact, this.options)
         .map(this.extractData);
     } else { // Insert contact
-      delete upsertContact._id;
       return this.http.post(API_URL, upsertContact, this.options)
         .map(this.extractData);
     }
