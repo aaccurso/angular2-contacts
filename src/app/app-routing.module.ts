@@ -1,12 +1,14 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoginFormComponent } from './login-form/login-form.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 
 const appRoutes: Routes = [
-  { path: '', component: ContactListComponent },
+  { path: '', component: LoginFormComponent },
+  { path: 'contacts', component: ContactListComponent },
   { path: 'contact/:id', component: ContactDetailComponent },
   { path: 'form/contact', component: ContactFormComponent },
   { path: 'form/contact/:id', component: ContactFormComponent },
